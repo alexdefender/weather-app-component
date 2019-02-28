@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <head>
+      <div class="search-wrapper">
+        <input type="text" name="search" id="search" class="search" />
+      </div>
+    </head>
+    <main>
+      <div class="info">
+        <input id="info-tab1" type="radio" name="info-tabs" checked />
+        <label for="info-tab1" title="Вкладка 1">Today</label>
+        <input id="info-tab2" type="radio" name="info-tabs" />
+        <label for="info-tab2" title="Вкладка 2">6 days</label>
+
+        <section id="info__one-day" class="info__one-day">
+          <div>
+            <h1>Kiev, Ukraine</h1>
+            <p>February 28, 00:00 AM</p>
+            <div class="one-day__main-values">
+              <p class="one-day__temp">1°</p>
+              <ul>
+                <li>0 m/s</li>
+                <li>Feels like: 2°</li>
+                <li>Humidity: 90%</li>
+              </ul>
+              <img src="img/sunny.png" alt="" class="one-day__img" />
+            </div>
+            <p>Overcast clouds</p>
+            <hr>
+            <table class="one-day__more-values">
+              <tbody>
+                <tr>
+                  <th>Pressure</th>
+                  <td>984 mb</td>
+                </tr>
+                <tr>
+                  <th>Dew point</th>
+                  <td>-0.3°</td>
+                </tr>
+                <tr>
+                  <th>Cloud coverage</th>
+                  <td>100%</td>
+                </tr>
+                <tr>
+                  <th>Visibility</th>
+                  <td>5 km</td>
+                </tr>
+                <tr>
+                  <th>Sunrise</th>
+                  <td>04:44</td>
+                </tr>
+                <tr>
+                  <th>Sunset</th>
+                  <td>15:37</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="info__more-days" class="info__more-days">
+          <div>qqqqqqq</div>
+        </section>
+      </div>
+
+      <div class="more-info">
+        <section class="more-info__tabs"></section>
+        <section class="more-info__favorite"></section>
+        <section class="more-info__history"></section>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>

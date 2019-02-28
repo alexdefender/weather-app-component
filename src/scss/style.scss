@@ -1,0 +1,96 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.info,
+.search-wrapper {
+  width: 400px;
+  padding: 0px;
+  margin: 0 auto;
+  background-color: #77a8e0;
+}
+
+.search {
+  margin: 10px 5px 10px 5px;
+  width: 380px;
+  height: 30px;
+  border: 1px solid #d5d7de;
+  padding: 5px 0 5px 10px;
+}
+
+.info__one-day,
+.info__more-days {
+  display: none;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.info > section > div {
+  color: #383838;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.info > input {
+  display: none;
+  position: absolute;
+
+  &:checked + label {
+    box-shadow: inset 0px -2px 0px 0px rgba(70,114,201,1);
+  }
+}
+
+.info > label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  width: 100px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  
+
+  &:hover {
+    cursor: pointer;
+  }
+  
+}
+
+#info-tab1:checked ~ #info__one-day,
+#info-tab2:checked ~ #info__more-days {
+  display: block;
+}
+
+.one-day__main-values {
+    display: flex;
+    justify-content: space-between;
+}
+
+.one-day__img {
+  width: 40%;
+  height: 40%;
+}
+
+.one-day__more-values {
+    width: 100%;
+
+    th {
+        text-align: left;
+    }
+
+    td {
+        text-align: right;
+    }
+}
+

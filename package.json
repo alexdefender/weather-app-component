@@ -1,0 +1,22 @@
+{
+  "name": "weather-app-component",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "alex",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.4.9",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.11.0"
+  },
+  "scripts": {
+    "start": "parcel -p 3000 src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
