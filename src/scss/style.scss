@@ -1,21 +1,83 @@
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.info,
-.search-wrapper {
+main {
   width: 400px;
-  padding: 0px;
   margin: 0 auto;
   background-color: #77a8e0;
 }
 
+.search-wrapper {
+  position: relative;
+  margin-top: 10px;
+}
+
 .search {
-  margin: 10px 5px 10px 5px;
-  width: 380px;
-  height: 30px;
-  border: 1px solid #d5d7de;
-  padding: 5px 0 5px 10px;
+  margin: 10px 5px 0 5px;
+  width: 390px;
+  height: 45px;
+  padding: 5px 50px 5px 50px;
+  box-sizing: border-box;
+}
+
+.search__btn {
+  position: absolute;
+  height: 42px;
+  width: 42px;
+  border: none;
+  background: transparent;
+  top: 11px;
+  right: 4px;
+  cursor: pointer;
+
+  &:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #858585;
+  }
+}
+
+.info-wrapper {
+  > section > div {
+    color: #383838;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  > input {
+    display: none;
+    position: absolute;
+
+    &:checked + label {
+      box-shadow: inset 0px -2px 0px 0px rgba(70, 114, 201, 1);
+    }
+  }
+
+  > label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    width: 100px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .info__one-day,
@@ -26,71 +88,50 @@ body {
   border: 1px solid #ddd;
 }
 
-.info > section > div {
-  color: #383838;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-name: fadeIn;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.info > input {
-  display: none;
-  position: absolute;
-
-  &:checked + label {
-    box-shadow: inset 0px -2px 0px 0px rgba(70,114,201,1);
-  }
-}
-
-.info > label {
-  display: inline-block;
-  margin: 0 0 -1px;
-  width: 100px;
-  padding: 15px 25px;
-  font-weight: 600;
-  text-align: center;
-  color: #fff;
-  
-
-  &:hover {
-    cursor: pointer;
-  }
-  
-}
-
-#info-tab1:checked ~ #info__one-day,
-#info-tab2:checked ~ #info__more-days {
+#today:checked ~ #info__one-day,
+#days-6:checked ~ #info__more-days {
   display: block;
 }
 
 .one-day__main-values {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    list-style-type: none;
+    margin: 7px;
+  }
+}
+
+.one-day__temp {
+  font-size: 100px;
+  margin: 0;
 }
 
 .one-day__img {
-  width: 40%;
-  height: 40%;
+  width: 30%;
+  height: 30%;
+}
+
+.one-day__description {
+  font-size: 30px;
+  font-weight: 600;
+  color: #ff872f;
 }
 
 .one-day__more-values {
-    width: 100%;
+  width: 100%;
 
-    th {
-        text-align: left;
-    }
+  th {
+    text-align: left;
+    padding: 5px;
+  }
 
-    td {
-        text-align: right;
-    }
+  td {
+    text-align: right;
+  }
 }
+
+@import '_more-info';
+
 

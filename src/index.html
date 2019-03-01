@@ -4,20 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
     <title>Weather App</title>
   </head>
   <body>
-    <head>
-      <div class="search-wrapper">
-        <input type="text" name="search" id="search" class="search" />
-      </div>
-    </head>
     <main>
-      <div class="info">
-        <input id="info-tab1" type="radio" name="info-tabs" checked />
-        <label for="info-tab1" title="Вкладка 1">Today</label>
-        <input id="info-tab2" type="radio" name="info-tabs" />
-        <label for="info-tab2" title="Вкладка 2">6 days</label>
+      <section class="search-wrapper">
+        <input type="text" name="search" id="search" class="search" />
+        
+        <button type="submit" class="search__btn"></button>
+      </section>
+      <div class="info-wrapper">
+        <input id="today" type="radio" name="tabs" checked />
+        <label for="today" title="Today">Today</label>
+        <input id="days-6" type="radio" name="tabs" />
+        <label for="days-6" title="6 days">6 days</label>
 
         <section id="info__one-day" class="info__one-day">
           <div>
@@ -32,8 +36,8 @@
               </ul>
               <img src="img/sunny.png" alt="" class="one-day__img" />
             </div>
-            <p>Overcast clouds</p>
-            <hr>
+            <p class="one-day__description">Overcast clouds</p>
+            <hr />
             <table class="one-day__more-values">
               <tbody>
                 <tr>
@@ -69,13 +73,16 @@
         </section>
       </div>
 
-      <div class="more-info">
-        <section class="more-info__tabs"></section>
-        <section class="more-info__favorite"></section>
-        <section class="more-info__history"></section>
+      <div class="more-info__wrapper">
+        <label for="more-info__icon" class="more-info__icon"></label>
+        <input id="more-info__icon" type="checkbox" name="more-info__icon" />
+        <div class="more-info">
+          <section class="more-info__tabs">111</section>
+          <section class="more-info__favorite">222</section>
+          <section class="more-info__history">333</section>
+        </div>
       </div>
     </main>
-
     <script src="index.js"></script>
   </body>
 </html>
