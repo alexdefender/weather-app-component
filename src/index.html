@@ -14,14 +14,17 @@
     <main>
       <section class="search-wrapper">
         <input type="text" name="search" id="search" class="search" />
-        
+
         <button type="submit" class="search__btn"></button>
       </section>
       <div class="info-wrapper">
         <input id="today" type="radio" name="tabs" checked />
         <label for="today" title="Today">Today</label>
-        <input id="days-6" type="radio" name="tabs" />
-        <label for="days-6" title="6 days">6 days</label>
+        <input id="days-3" type="radio" name="tabs" />
+        <label for="days-3" title="3 days">3 days</label>
+        <button class="fa fa-star" aria-hidden="true"></button>
+        <button class="temp-change-btn">C°</button>
+        <button class="temp-change-btn">F°</button>
 
         <section id="info__one-day" class="info__one-day">
           <div>
@@ -68,18 +71,69 @@
             </table>
           </div>
         </section>
-        <section id="info__more-days" class="info__more-days">
-          <div>qqqqqqq</div>
+        <section id="info__days-3" class="info__days-3">
+          <div class="info__days-3__day">
+            <div>
+              <h2>Thursday</h2>
+              <p>28/02/2019</p>
+            </div>
+            <img src="img/cloudy.png" alt="" class="days-3__img" />
+            <ul>
+              <li>0° | 2°</li>
+              <li>0 m/s</li>
+            </ul>
+            <p class="days-3__description">Overcast clouds</p>
+            
+          </div>
+          <hr>
+          <div class="info__days-3__day">
+            <div>
+              <h2>Thursday</h2>
+              <p>28/02/2019</p>
+            </div>
+            <img src="img/cloudy.png" alt="" class="days-3__img" />
+            <ul>
+              <li>0° | 2°</li>
+              <li>0 m/s</li>
+            </ul>
+            <p class="days-3__description">Overcast clouds</p>
+            
+          </div>
+          <hr>
+          <div class="info__days-3__day">
+            <div>
+              <h2>Thursday</h2>
+              <p>28/02/2019</p>
+            </div>
+            <img src="img/cloudy.png" alt="" class="days-3__img" />
+            <ul>
+              <li>0° | 2°</li>
+              <li>0 m/s</li>
+            </ul>
+            <p class="days-3__description">Overcast clouds</p>
+            
+          </div>
+          
         </section>
       </div>
 
       <div class="more-info__wrapper">
-        <label for="more-info__icon" class="more-info__icon"></label>
-        <input id="more-info__icon" type="checkbox" name="more-info__icon" />
+        <label for="more-info__checkbox" class="more-info__icon"></label>
+        <input
+          id="more-info__checkbox"
+          type="checkbox"
+          name="more-info__checkbox"
+        />
         <div class="more-info">
-          <section class="more-info__tabs">111</section>
-          <section class="more-info__favorite">222</section>
-          <section class="more-info__history">333</section>
+          <div class="more-info__favourite">
+            <h3>Favourite</h3>
+            <div>Kiev <button class="fa fa-times"></button></div>
+          </div>
+          <hr>
+          <div class="more-info__history">
+              <h3>History</h3>
+              <div>Kiev <button class="fa fa-times"></button></div>
+          </div>
         </div>
       </div>
     </main>

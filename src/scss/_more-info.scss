@@ -1,14 +1,18 @@
 .more-info__wrapper {
     position: relative;
+    background-color: #ffffff;
 }
 
-#more-info__icon {
+#more-info__checkbox {
   height: 0;
   width: 0;
   margin: -1px;
-
+  
   &:checked + .more-info {
     visibility: visible;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
   }
 }
 
@@ -16,11 +20,11 @@
     visibility: hidden;
     position: absolute;
     width: 400px;
-    height: 300px;
-    top: -132px;
+    height: 600px;
+    top: -595px;
+    padding: 10px; 
+    padding-top: 0;
     background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-top: 0;
     box-sizing: border-box;
   }
 
@@ -31,9 +35,7 @@
   content: "";
   height: 4px;
   width: 25px;
-  top: -625px;
+  top: -629px;
   left: 20px;
   cursor: pointer;
 }
-
-
