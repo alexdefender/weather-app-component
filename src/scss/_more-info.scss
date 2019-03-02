@@ -1,14 +1,14 @@
-.more-info__wrapper {
+.favor-hist__wrapper {
     position: relative;
     background-color: #ffffff;
 }
 
-#more-info__checkbox {
+#favor-hist__checkbox {
   height: 0;
   width: 0;
   margin: -1px;
   
-  &:checked + .more-info {
+  &:checked + .favor-hist {
     visibility: visible;
     animation-duration: 0.5s;
     animation-fill-mode: both;
@@ -16,7 +16,7 @@
   }
 }
 
-.more-info {
+.favor-hist {
     visibility: hidden;
     position: absolute;
     width: 400px;
@@ -28,7 +28,7 @@
     box-sizing: border-box;
   }
 
-.more-info__icon {
+.favor-hist__icon {
   position: absolute;
   border-bottom: 10px double #858585;
   border-top: 3px solid #858585;

@@ -55,7 +55,7 @@ main {
   color: #1a1a1a;
 }
 
-.info-wrapper {
+.weather-wrapper {
   > section > div {
     color: #383838;
     animation-duration: 1s;
@@ -96,20 +96,20 @@ main {
   }
 }
 
-.info__one-day,
-.info__days-3 {
+.weather__today,
+.weather__days-3 {
   display: none;
   padding: 10px;
   height: 530px;
   background: #fff;
 }
 
-#today:checked ~ #info__one-day,
-#days-3:checked ~ #info__days-3 {
+#today:checked ~ #weather__today,
+#days-3:checked ~ #weather__days-3 {
   display: block;
 }
 
-.one-day__main-values {
+.weather__today__main-values {
   display: flex;
   justify-content: space-between;
 
@@ -119,24 +119,24 @@ main {
   }
 }
 
-.one-day__temp {
+.weather__today__temp {
   font-size: 100px;
   margin: 0;
 }
 
-.one-day__img {
+.weather__today__img {
   width: 30%;
   height: 30%;
 }
 
-.one-day__description, 
+.weather__today__description, 
 .days-3__description {
   font-size: 30px;
   font-weight: 600;
   color: #ff872f;
 }
 
-.one-day__more-values {
+.weather__today__more-values {
   width: 100%;
 
   th {
@@ -149,7 +149,7 @@ main {
   }
 }
 
-.info__days-3__day {
+.weather__days-3__day {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -166,7 +166,7 @@ main {
   height: 20%;
 }
 
-.days-3__description {
+.weather__days-3__description {
   font-size: 20px;
 }
 
