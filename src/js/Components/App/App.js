@@ -1,6 +1,5 @@
 import Component from "../../framework/Component";
-import { Temperature } from "../Temperature/";
-import { Wind } from "../Wind";
+import { SearchBar } from "../SearchBar";
 
 export default class App extends Component {
   constructor(host) {
@@ -8,81 +7,106 @@ export default class App extends Component {
   }
 
   render() {
-    const t1 = document.createElement("div");
-    new Temperature(t1, { temperature: 25, unit: "C" });
-
-    const w1 = document.createElement("div");
-    new Wind(w1, { speed: 100500, unit: "mph" });
-
     return [
-      "Temperature range",
-      t1,
       {
-        tag: Temperature,
-        props: {
-          temperature: 7,
-          unit: "C"
-        }
-      },
-      {
-        tag: Temperature,
-        props: {
-          temperature: 18,
-          unit: "C"
-        }
-        // children: [], -- illegal
+        tag: SearchBar,
+        classList: ["search-wrapper"]
       },
       {
         tag: "div",
-        content: "Me div",
-        classList: ["nice"],
-        attributes: [
-          {
-            name: "title",
-            value: "Me definitely nice div"
-          }
-        ]
-      },
-      {
-        tag: "div",
-        content: "I am a parent div",
-        attributes: [
-          {
-            name: "title",
-            value: "I have got children"
-          }
-        ],
+        classList: "weather-wrapper",
         children: [
-          { tag: "div", content: "Child 1" },
-          {
-            tag: "div",
-            content: "Child 2",
-            children: [
-              { tag: "div", content: "Child 2.1" },
-              { tag: "div", content: "Child 2.2" },
-              { tag: Temperature, props: { temperature: 100, unit: "K" } }
-            ]
-          },
-          { tag: "div", content: "Child 3" },
           {
             tag: "input",
-            eventHandlers: [
+            attributes: [
               {
-                eventType: "change"
-                // handler: this.handleChange, // bind(this): constructor(){this.method = this.method.bind(this);}
+                name: "id",
+                value: "today"
+              },
+              {
+                name: "type",
+                value: "radio"
+              },
+              {
+                name: "name",
+                value: "tabs"
+              },
+              {
+                name: "checked"
               }
             ]
+          },
+          {
+            tag: "label",
+            content: "Today",
+            attributes: [
+              {
+                name: "for",
+                value: "today"
+              },
+              {
+                name: "title",
+                value: "Today"
+              }
+            ]
+          },
+          {
+            tag: "input",
+            attributes: [
+              {
+                name: "id",
+                value: "days-3"
+              },
+              {
+                name: "type",
+                value: "radio"
+              },
+              {
+                name: "name",
+                value: "tabs"
+              },
+              {
+                name: "checked"
+              }
+            ]
+          },
+          {
+            tag: "label",
+            content: "3 days",
+            attributes: [
+              {
+                name: "for",
+                value: "days-3"
+              },
+              {
+                name: "title",
+                value: "3 days"
+              }
+            ]
+          },
+          {
+            tag: "button",
+            classList: ["fa", "fa-star"],
+            attributes: [
+              {
+                name: "aria-hidden",
+                value: "true"
+              }
+            ]
+          },
+          {
+            tag: "button",
+            classList: ["temp-change-btn"],
+            content: "C&deg;"
+          },
+          {
+            tag: "button",
+            classList: ["temp-change-btn"],
+            content: "F"
           }
         ]
-      }, // <div title="I have got children"><div>Child 1</dev><div>Child 2<d2.1/><d2.2/></dev><div>Child 2</dev> </div>
-      {
-        tag: Wind,
-        props: {
-          speed: 250,
-          unit: "mph"
-        }
-      },
-      w1
+      }
     ];
   }
 }
+
