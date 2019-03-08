@@ -44,6 +44,16 @@ export default class Component {
             container.classList.add(...element.classList);
           }
 
+          if (element.attributes) {
+            element.attributes.forEach(attributeSpec => {
+              if (attributeSpec.value === undefined) {
+                container.setAttribute(attributeSpec.name, "");
+              } else {
+                container.setAttribute(attributeSpec.name, attributeSpec.value);
+              }
+            });
+          }
+
           return container;
         } else {
           // string
@@ -63,9 +73,8 @@ export default class Component {
           }
           if (element.attributes) {
             element.attributes.forEach(attributeSpec => {
-              
               if (attributeSpec.value === undefined) {
-                container.setAttribute(attributeSpec.name, '');
+                container.setAttribute(attributeSpec.name, "");
               } else {
                 container.setAttribute(attributeSpec.name, attributeSpec.value);
               }

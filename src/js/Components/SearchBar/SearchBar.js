@@ -5,11 +5,6 @@ export default class SearchBar extends Component {
     super(host, props);
   }
 
-  // <section class="search-wrapper">
-  //       <input type="text" name="search" id="search" class="search" />
-  //       <button type="submit" class="search__btn"></button>
-  //     </section>
-
   render() {
     return [
       {

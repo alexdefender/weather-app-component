@@ -6,6 +6,21 @@ export default class SearchHistory extends SearchBar {
   }
 
   render() {
-    return "SearchHistory";
+    return [
+      {
+        tag: "h3",
+        content: "History"
+      },
+      {
+        tag: "div",
+        content: "Kiev",
+        children: [
+          {
+            tag: "button",
+            classList: ["fa", "fa-times"]
+          }
+        ]
+      }
+    ];
   }
 }

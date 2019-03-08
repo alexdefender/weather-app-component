@@ -6,6 +6,21 @@ export default class FavouriteLocations extends Component {
   }
 
   render() {
-    return "FavouriteLocations";
+    return [
+      {
+        tag: "h3",
+        content: "Favourite"
+      },
+      {
+        tag: "div",
+        content: "Kiev",
+        children: [
+          {
+            tag: "button",
+            classList: ["fa", "fa-times"]
+          }
+        ]
+      }
+    ];
   }
 }

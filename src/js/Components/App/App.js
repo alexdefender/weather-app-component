@@ -1,5 +1,9 @@
 import Component from "../../framework/Component";
 import { SearchBar } from "../SearchBar";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import WeatherForecast from "../WeatherForecast/WeatherForecast";
+import FavouriteLocations from "../FavouriteLocations/FavouriteLocations";
+import SearchHistory from "../SearchHistory/SearchHistory";
 
 export default class App extends Component {
   constructor(host) {
@@ -7,6 +11,9 @@ export default class App extends Component {
   }
 
   render() {
+    const currentWeather = document.createElement("section");
+    new CurrentWeather(currentWeather);
+
     return [
       {
         tag: SearchBar,
@@ -65,9 +72,6 @@ export default class App extends Component {
                 name: "name",
                 value: "tabs"
               },
-              {
-                name: "checked"
-              }
             ]
           },
           {
@@ -102,11 +106,80 @@ export default class App extends Component {
           {
             tag: "button",
             classList: ["temp-change-btn"],
-            content: "F"
+            content: "F",
+          },
+          {
+            tag: CurrentWeather,
+            classList: ["weather__today"],
+            attributes: [
+              {
+                name: "id",
+                value: "weather__today",
+              }
+            ],
+          },
+          {
+            tag: WeatherForecast,
+            classList: ["weather__days-3"],
+            attributes: [
+              {
+                name: "id",
+                value: "weather__days-3",
+              }
+            ],
+          }
+        ]
+      },
+      {
+        tag: 'div',
+        classList: 'favor-hist__wrapper',
+        children: [
+          {
+            tag: 'label',
+            classList: 'favor-hist__icon',
+            attributes: [
+              {
+                name: "for",
+                value: 'favor-hist__checkbox',
+              }
+            ]
+          },
+          {
+            tag: "input",
+            attributes: [
+              {
+                name: "id",
+                value: "favor-hist__checkbox",
+              },
+              {
+                name: "type",
+                value: "checkbox"
+              },
+              {
+                name: "name",
+                value: "favor-hist__checkbox"
+              }
+            ]
+          },
+          {
+            tag: "div",
+            classList: "favor-hist",
+            children: [
+              {
+                tag: FavouriteLocations,
+                classList: "favor-hist__favourite"
+              },
+              {
+                tag: "hr"
+              },
+              {
+                tag: SearchHistory,
+                classList: "favor-hist__favourite"
+              }
+            ]
           }
         ]
       }
     ];
   }
 }
-
