@@ -1,4 +1,6 @@
 import Component from "../../framework/Component";
+import imageUrl from "../../../img/cloudy.png";
+import WeatherDataService from "../../../services/WeatherDataService"
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -6,17 +8,19 @@ export default class CurrentWeather extends Component {
   }
 
   render() {
+    console.log(WeatherDataService.getCurrentWeather());
+
     return [
       {
         tag: "div",
         children: [
           {
             tag: 'h1',
-            content: "Kiev, Ukraine"
+            content: `${this.props.city}, ${this.props.country}`
           },
           {
             tag: "p",
-            content: "February 28, 00:00 AM",
+            content: this.props.date,
           },
           {
             tag: "div",
@@ -25,22 +29,22 @@ export default class CurrentWeather extends Component {
               {
                 tag: "p",
                 classList: "weather__today__temp",
-                content: "1°"
+                content: this.props.temp + this.props.unit
               },
               {
                 tag: "ul",
                 children: [
                   {
                     tag: 'li',
-                    content: "0 m/s",
+                    content: `${this.props.wind} m/s`,
                   },
                   {
                     tag: 'li',
-                    content: "Feels like: 2°",
+                    content: `Feels like: ${this.props.tempFeelsLike + this.props.unit}`,
                   },
                   {
                     tag: 'li',
-                    content: "Humidity: 90%",
+                    content: `Humidity: ${this.props.humidity}%`,
                   }
                 ]
               },
@@ -50,7 +54,7 @@ export default class CurrentWeather extends Component {
                 attributes: [
                   {
                     name: "src",
-                    value: "img/cloudy_night.png"
+                    value: imageUrl
                   }
                 ]
               }

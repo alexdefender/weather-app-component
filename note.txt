@@ -6,6 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.4.9",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "node-sass": "^4.11.0",
@@ -23,4 +24,10 @@
   "dependencies": {
     "normalize.css": "^8.0.1"
   }
+}
+
+
++ файл .babelrc:
+    {
+    "presets": ["env"]
 }

@@ -19,6 +19,7 @@ export default class Component {
         });
     }
   }
+
   /* @returns {string|[string|HTMLElement|Component]} */
   render() {
     return "OMG! They wanna see me!!!!!! Aaaaaa";
@@ -39,21 +40,7 @@ export default class Component {
         if (typeof element.tag === "function") {
           const container = document.createElement("div");
           new element.tag(container, element.props);
-
-          if (element.classList) {
-            container.classList.add(...element.classList);
-          }
-
-          if (element.attributes) {
-            element.attributes.forEach(attributeSpec => {
-              if (attributeSpec.value === undefined) {
-                container.setAttribute(attributeSpec.name, "");
-              } else {
-                container.setAttribute(attributeSpec.name, attributeSpec.value);
-              }
-            });
-          }
-
+          this._checkPrototypeElement(element, container);
           return container;
         } else {
           // string
@@ -61,38 +48,44 @@ export default class Component {
           if (element.content) {
             container.innerHTML = element.content;
           }
-
-          // ensure following element properties are Array
-          ["classList", "attributes", "children"].forEach(item => {
-            if (element[item] && !Array.isArray(element[item])) {
-              element[item] = [element[item]];
-            }
-          });
-          if (element.classList) {
-            container.classList.add(...element.classList);
-          }
-          if (element.attributes) {
-            element.attributes.forEach(attributeSpec => {
-              if (attributeSpec.value === undefined) {
-                container.setAttribute(attributeSpec.name, "");
-              } else {
-                container.setAttribute(attributeSpec.name, attributeSpec.value);
-              }
-            });
-          }
-
-          // process children
-          if (element.children) {
-            element.children.forEach(el => {
-              const htmlElement = this._vDomPrototypeElementToHtmlElement(el);
-              container.appendChild(htmlElement);
-            });
-          }
-
+          this._checkPrototypeElement(element, container);
           return container;
         }
       }
       return element;
     }
+  }
+
+  _checkPrototypeElement(element, container) {
+    // ensure following element properties are Array
+    ["classList", "attributes", "children"].forEach(item => {
+      if (element[item] && !Array.isArray(element[item])) {
+        element[item] = [element[item]];
+      }
+    });
+
+    if (element.classList) {
+      container.classList.add(...element.classList);
+    }
+
+    if (element.attributes) {
+      element.attributes.forEach(attributeSpec => {
+        if (attributeSpec.value === undefined) {
+          container.setAttribute(attributeSpec.name, "");
+        } else {
+          container.setAttribute(attributeSpec.name, attributeSpec.value);
+        }
+      });
+    }
+
+    // process children
+    if (element.children) {
+      element.children.forEach(el => {
+        const htmlElement = this._vDomPrototypeElementToHtmlElement(el);
+        container.appendChild(htmlElement);
+      });
+    }
+
+    return container;
   }
 }

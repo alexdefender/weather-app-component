@@ -4,6 +4,7 @@ import CurrentWeather from "../CurrentWeather/CurrentWeather";
 import WeatherForecast from "../WeatherForecast/WeatherForecast";
 import FavouriteLocations from "../FavouriteLocations/FavouriteLocations";
 import SearchHistory from "../SearchHistory/SearchHistory";
+import WeatherDataService from "../../../services/WeatherDataService";
 
 export default class App extends Component {
   constructor(host) {
@@ -11,9 +12,6 @@ export default class App extends Component {
   }
 
   render() {
-    const currentWeather = document.createElement("section");
-    new CurrentWeather(currentWeather);
-
     return [
       {
         tag: SearchBar,
@@ -110,6 +108,16 @@ export default class App extends Component {
           },
           {
             tag: CurrentWeather,
+            props: {
+              city: "Kiev",
+              country: "Ukrain",
+              date: "February 28, 00:00 AM",
+              temp: 7,
+              unit: "°",
+              wind: "0",
+              tempFeelsLike: "10",
+              humidity: "90",
+            },
             classList: ["weather__today"],
             attributes: [
               {
