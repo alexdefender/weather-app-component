@@ -1,16 +1,17 @@
 let cityName = "London";
 let countryCode = "uk";
+const API_KEY = "9e5f732b51c403196a6a5096551e6098";
 
 const API_DATA_WEATHER = new URL(
-  `http://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&APPID=9e5f732b51c403196a6a5096551e6098`
+  `http://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&APPID=${API_KEY}`
 );
 
 const API_DATA_FORECAST = new URL(
-  `http://api.openweathermap.org/data/2.5/forecast?q=${cityName},${countryCode}&APPID=9e5f732b51c403196a6a5096551e6098`
+  `http://api.openweathermap.org/data/2.5/forecast?q=${cityName},${countryCode}&APPID=${API_KEY}`
 );
 
-let DATA_WEATHER = {};
-let DATA_FORECAST = {};
+let dataWeather = {};
+let dataForecast = {};
 
 class WeatherDataService {
   constructor() {
@@ -23,13 +24,13 @@ class WeatherDataService {
       .then(response => response.json())
       .then(data => {
         if (url.pathname.includes("weather")) {
-          console.log(data);
-          DATA_WEATHER = Object.assign(data);
-          console.log(DATA_WEATHER);
+          dataWeather = Object.assign(data);
+          console.log('dataWeather');
+          // console.log(dataWeather);
         } else if (url.pathname.includes("forecast")) {
-          console.log(data);
-          DATA_FORECAST = Object.assign(data);
-          console.log(DATA_FORECAST);
+          dataForecast = Object.assign(data);
+          // console.log('dataForecast');
+          // console.log(dataForecast);
         }
       })
       .catch(err => {
@@ -39,15 +40,12 @@ class WeatherDataService {
 
   getCurrentWeather() {
     this._getWeather(API_DATA_WEATHER);
-    
-    return DATA_WEATHER;
+    return dataWeather;
   }
 
   getWeatherForecast() {
     this._getWeather(API_DATA_FORECAST);
-
-
-    return 0;
+    return dataForecast;
   }
 }
 

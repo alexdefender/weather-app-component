@@ -12,6 +12,11 @@ export default class App extends Component {
   }
 
   render() {
+
+    let data = WeatherDataService.getCurrentWeather();
+
+    console.log(data);
+
     return [
       {
         tag: SearchBar,
@@ -109,14 +114,16 @@ export default class App extends Component {
           {
             tag: CurrentWeather,
             props: {
-              city: "Kiev",
-              country: "Ukrain",
-              date: "February 28, 00:00 AM",
+              city: "London",
+              country: "GB",
+              date: "2019-03-09",
               temp: 7,
               unit: "°",
               wind: "0",
               tempFeelsLike: "10",
+              description: "Cloud",
               humidity: "90",
+              pressure: "1010.39"
             },
             classList: ["weather__today"],
             attributes: [

@@ -1,3 +1,5 @@
+import WeatherDataService from "../../services/WeatherDataService";
+
 export default class Component {
   constructor(host, props = {}) {
     this.host = host;
@@ -9,16 +11,18 @@ export default class Component {
     this.host.innerHTML = "";
     const content = this.render();
 
-    if (typeof content === "string") {
-      this.host.innerHTML = content;
-    } else {
-      content
-        .map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
-        .forEach(htmlElement => {
-          this.host.appendChild(htmlElement);
-        });
+    if (!Array.isArray(content)) {
+      content = [content];
+
     }
+
+    content
+      .map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
+      .forEach(htmlElement => {
+        this.host.appendChild(htmlElement);
+      });
   }
+
 
   /* @returns {string|[string|HTMLElement|Component]} */
   render() {
@@ -75,6 +79,13 @@ export default class Component {
         } else {
           container.setAttribute(attributeSpec.name, attributeSpec.value);
         }
+      });
+    }
+
+    if (element.eventHandlers) {
+      console.log(element.eventHandlers);
+      Object.keys(element.eventHandlers).forEach(eventType => {
+        container.addEventListener(eventType, element.eventHandlers[eventType]);
       });
     }
 

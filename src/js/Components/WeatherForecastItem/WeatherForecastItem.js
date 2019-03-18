@@ -1,7 +1,6 @@
 import Component from "../../framework/Component";
 import imageUrl from "../../../img/cloudy.png";
 
-
 export default class WeatherForecastItem extends Component {
   constructor(host, props) {
     super(host, props);
@@ -14,11 +13,11 @@ export default class WeatherForecastItem extends Component {
         children: [
           {
             tag: "h2",
-            content: "Thursday"
+            content: this.props.day
           },
           {
             tag: "p",
-            content: "28/02/2019"
+            content: this.props.date
           }
         ]
       },
@@ -37,18 +36,19 @@ export default class WeatherForecastItem extends Component {
         children: [
           {
             tag: "li",
-            content: "0° | 2°"
+            content: `${this.props.temp + this.props.unit} | ${this.props
+              .tempFeelsLike + this.props.unit}`
           },
           {
             tag: "li",
-            content: "0 m/s"
+            content: `${this.props.wind} m/s`
           }
         ]
       },
       {
         tag: "p",
         classList: "weather__days-3__description",
-        content: "Overcast clouds"
+        content: this.props.description
       }
     ];
   }
