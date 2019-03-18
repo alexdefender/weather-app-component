@@ -1,5 +1,5 @@
 import Component from "../../framework/Component";
-import WeatherForecastItem from "../WeatherForecastItem/WeatherForecastItem";
+import { WeatherForecastItem } from "../WeatherForecastItem";
 
 export default class WeatherForecast extends Component {
   constructor(host, props) {

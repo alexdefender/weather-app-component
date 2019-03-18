@@ -25,7 +25,7 @@ class WeatherDataService {
       .then(data => {
         if (url.pathname.includes("weather")) {
           dataWeather = Object.assign(data);
-          console.log('dataWeather');
+          // console.log('dataWeather');
           // console.log(dataWeather);
         } else if (url.pathname.includes("forecast")) {
           dataForecast = Object.assign(data);

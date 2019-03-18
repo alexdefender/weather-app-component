@@ -1,7 +1,5 @@
 import Component from "../../framework/Component";
 import imageUrl from "../../../img/cloudy.png";
-import WeatherDataService from "../../../services/WeatherDataService";
-
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
@@ -9,9 +7,6 @@ export default class CurrentWeather extends Component {
   }
 
   render() {
-
-    // console.log(WeatherDataService.getCurrentWeather.city.name);
-
     return [
       {
         tag: "div",
