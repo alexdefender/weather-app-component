@@ -1,36 +1,34 @@
 import Component from "../../framework/Component";
-import { SearchBar } from "../SearchBar";
-import { CurrentWeather } from "../CurrentWeather";
-import { WeatherForecast } from "../WeatherForecast";
-import { WeatherDataService } from "../../../services/WeatherDataService";
-import { LocationsList } from "../LocationsList";
-import { Weather } from "../Weather";
+import {SearchBar} from "../SearchBar";
+import {LocationsList} from "../LocationsList";
+import {Weather} from "../Weather";
 
 export default class App extends Component {
-  constructor(host) {
-    super(host);
-  }
+    constructor(host) {
+        super(host);
+        this.state = {};
+    }
 
-  render() {
+    render() {
 
-    // let data = WeatherDataService.getCurrentWeather();
 
-    // console.log(data);
+        if (this.state !== undefined) console.log(1);
 
-    return [
-      {
-        tag: SearchBar,
-        classList: "search-wrapper"
-      },
-      {
-        tag: Weather,
-        classList: "weather-wrapper",
+        return [
+            {
+                tag: SearchBar,
+                classList: "search-wrapper"
+            },
+            {
+                tag: Weather,
+                // props: this.state.name,
+                classList: "weather-wrapper",
 
-      },
-      {
-        tag: LocationsList,
-        classList: 'favor-hist__wrapper',
-      }
-    ];
-  }
+            },
+            {
+                tag: LocationsList,
+                classList: 'favor-hist__wrapper',
+            }
+        ];
+    }
 }

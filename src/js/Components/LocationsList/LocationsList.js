@@ -8,7 +8,6 @@ export default class LocationsList extends Component {
   }
 
   render() {
-    console.log("I am LocationsList class")
     return [
       {
         tag: 'label',

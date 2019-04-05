@@ -1,5 +1,5 @@
 import Component from "../../framework/Component";
-import imageUrl from "../../../img/cloudy.png";
+import imageUrl from "../../../img/cloudy_night.png";
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {

@@ -7,11 +7,11 @@
   "devDependencies": {
     "autoprefixer": "^9.4.9",
     "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "^1.10.3",
     "shx": "^0.3.2"
   },
   "scripts": {
-    "start": "parcel -p 3000 ./src/index.html",
+    "start": "parcel ./src/index.html",
     "prebuild-dev": "shx rm -rf dist/",
     "build-dev": "parcel build ./src/index.html --no-minify --public-url ./",
     "prebuild": "shx rm -rf dist/",
@@ -19,6 +19,7 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "src": "^1.1.2"
   }
 }
