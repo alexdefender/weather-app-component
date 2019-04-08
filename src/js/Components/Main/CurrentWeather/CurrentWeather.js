@@ -1,5 +1,4 @@
 import Component from "../../../framework/Component";
-import imageUrl from "../../../../img/cloudy_night.png";
 import AppState from "../../../../services/AppState";
 
 export default class CurrentWeather extends Component {
@@ -14,17 +13,27 @@ export default class CurrentWeather extends Component {
     }
 
     updateMyself(state) {
+        let currentDate = new Date().toISOString().substr(0,10);
         const newState = {
             'city': state.name,
             'country': state.sys.country,
+            'date': currentDate,
+            'temp': Math.round(state.main.temp),
+            'wind': state.wind.speed,
+            'description': state.weather[0].description.toUpperCase(),
+            'icon': state.weather[0].icon,
+            'clouds': state.clouds.all,
+            'humidity': state.main.humidity,
+            'pressure': state.main.pressure,
         }
+
         console.log(state)
         this.updateState(newState);
     }
 
     render() {
 
-        const {city, country} = this.state;
+        const {city, country, date, temp, wind, description, icon, clouds, humidity, pressure} = this.state;
 
         console.log(this.state)
         return [
@@ -37,7 +46,7 @@ export default class CurrentWeather extends Component {
                     },
                     {
                         tag: "p",
-                        content: this.props.date
+                        content: date
                     },
                     {
                         tag: "div",
@@ -46,19 +55,18 @@ export default class CurrentWeather extends Component {
                             {
                                 tag: "p",
                                 classList: "weather__today__temp",
-                                content: this.props.temp + this.props.unit
+                                content: temp
                             },
                             {
                                 tag: "ul",
                                 children: [
                                     {
                                         tag: "li",
-                                        content: `${this.props.wind} m/s`
+                                        content: `${wind} m/s`
                                     },
                                     {
                                         tag: "li",
-                                        content: `Feels like: ${this.props.tempFeelsLike +
-                                        this.props.unit}`
+                                        content: description
                                     }
                                 ]
                             },
@@ -68,7 +76,7 @@ export default class CurrentWeather extends Component {
                                 attributes: [
                                     {
                                         name: "src",
-                                        value: imageUrl
+                                        value: `http://openweathermap.org/img/w/${icon}.png`
                                     }
                                 ]
                             }
@@ -94,11 +102,24 @@ export default class CurrentWeather extends Component {
                                         children: [
                                             {
                                                 tag: "th",
+                                                content: "Clouds"
+                                            },
+                                            {
+                                                tag: "td",
+                                                content: `${clouds} %`
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        tag: "tr",
+                                        children: [
+                                            {
+                                                tag: "th",
                                                 content: "Humidity"
                                             },
                                             {
                                                 tag: "td",
-                                                content: `${this.props.humidity} %`
+                                                content: `${humidity} %`
                                             }
                                         ]
                                     },
@@ -111,7 +132,7 @@ export default class CurrentWeather extends Component {
                                             },
                                             {
                                                 tag: "td",
-                                                content: `${this.props.pressure} mb`
+                                                content: `${pressure} hPa`
                                             }
                                         ]
                                     }
