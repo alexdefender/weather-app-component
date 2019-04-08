@@ -12,8 +12,8 @@ export default class Component {
 
     }
 
-    updateState(stateDelta) {
-        this.state = Object.assign({}, this.state, stateDelta);
+    updateState(state) {
+        this.state = Object.assign({}, this.state, state);
         this._render();
     }
 

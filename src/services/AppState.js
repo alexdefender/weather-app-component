@@ -1,6 +1,6 @@
 class AppState {
     constructor() {
-        this.watchers = {
+         this.watchers = {
             // 'ENTITY': [ watcher1, watcher2 ],
         };
     }

@@ -1,7 +1,7 @@
 import Component from "../../framework/Component";
-import {SearchBar} from "../SearchBar";
-import {LocationsList} from "../LocationsList";
-import {Weather} from "../Weather";
+import {SearchBar} from "../Header/SearchBar";
+import {LocationsList} from "../Header/LocationsList";
+import {Main} from "../Main";
 
 export default class App extends Component {
     constructor(host) {
@@ -10,8 +10,6 @@ export default class App extends Component {
     }
 
     render() {
-
-
         if (this.state !== undefined) console.log(1);
 
         return [
@@ -20,7 +18,7 @@ export default class App extends Component {
                 classList: "search-wrapper"
             },
             {
-                tag: Weather,
+                tag: Main,
                 // props: this.state.name,
                 classList: "weather-wrapper",
 

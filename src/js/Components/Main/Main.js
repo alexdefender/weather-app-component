@@ -1,8 +1,8 @@
 import Component from "../../framework/Component";
-import {CurrentWeather} from "../CurrentWeather";
-import {WeatherForecast} from "../WeatherForecast";
+import {CurrentWeather} from "./CurrentWeather/";
+import {WeatherForecast} from "./WeatherForecast/";
 
-export default class Weather extends Component {
+export default class Main extends Component {
     constructor(host, props) {
         super(host, props);
     }
@@ -96,7 +96,7 @@ export default class Weather extends Component {
             },
             {
                 tag: CurrentWeather,
-                props: {
+                /*props: {
                     city: "London",
                     country: "GB",
                     date: "2019-03-09",
@@ -107,7 +107,7 @@ export default class Weather extends Component {
                     description: "Cloud",
                     humidity: "90",
                     pressure: "1010.39"
-                },
+                },*/
                 classList: "weather__today",
                 attributes: [
                     {

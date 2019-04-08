@@ -1,6 +1,6 @@
-import Component from "../../framework/Component";
-import { FavouriteLocations } from "../FavouriteLocations";
-import { SearchHistory } from "../SearchHistory";
+import Component from "../../../framework/Component";
+import { FavouriteLocations } from "../FavouriteLocations/index";
+import { SearchHistory } from "../SearchHistory/index";
 
 export default class LocationsList extends Component {
   constructor(host, props) {

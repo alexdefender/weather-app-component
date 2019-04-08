@@ -1,4 +1,4 @@
-import { SearchBar } from "../SearchBar";
+import { SearchBar } from "../SearchBar/index";
 
 export default class SearchHistory extends SearchBar {
   constructor(host, props) {

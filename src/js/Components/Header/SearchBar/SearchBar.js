@@ -1,23 +1,38 @@
-import Component from "../../framework/Component";
-import WeatherDataService from "../../../services/WeatherDataService";
+import Component from "../../../framework/Component";
+import WeatherDataService from "../../../../services/WeatherDataService";
+import AppState from "../../../../services/AppState";
 
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
     }
 
-    // init() {
-    //     ['getInfoFromInput']
-    //         .forEach(methodName => this[methodName] = this[methodName].bind(this));
-    // }
+    init() {
+        ['getInfoFromInput']
+            .forEach(methodName => this[methodName] = this[methodName].bind(this));
+    }
 
     getInfoFromInput() {
         let input = document.getElementById('search');
 
         WeatherDataService.getCurrentWeather(input.value)
-            .then(info => console.log(info));
+            .then(currentWeather => {
+                // console.log(currentWeather)
+                WeatherDataService.getWeatherForecast(input.value)
+                    .then(weatherForecast => {
+                        // console.log(weatherForecast);
+                        AppState.update('currentWeather', currentWeather);
+                        AppState.update('weatherForecast', weatherForecast);
+                    })
+            });
 
-        // console.log(info);
+        /*WeatherDataService.getCurrentWeather(input.value)
+            .then(weather => {
+                console.log('weather', weather);
+                currentWeather = Object.create(weather) ;
+            });
+
+        console.log(currentWeather);*/
 
         // return input.value;
     }

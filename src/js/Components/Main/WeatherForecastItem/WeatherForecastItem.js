@@ -1,5 +1,5 @@
-import Component from "../../framework/Component";
-import imageUrl from "../../../img/cloudy.png";
+import Component from "../../../framework/Component";
+import imageUrl from "../../../../img/cloudy.png";
 
 export default class WeatherForecastItem extends Component {
   constructor(host, props) {
