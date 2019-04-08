@@ -8,7 +8,8 @@ export default class CurrentWeather extends Component {
     }
 
     init() {
-        this.updateMyself = this.updateMyself.bind(this);
+        ['updateMyself']
+            .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = this.props;
     }
 
@@ -27,15 +28,14 @@ export default class CurrentWeather extends Component {
             'pressure': state.main.pressure,
         }
 
-        console.log(state)
+        // console.log(state)
         this.updateState(newState);
     }
 
     render() {
-
         const {city, country, date, temp, wind, description, icon, clouds, humidity, pressure} = this.state;
 
-        console.log(this.state)
+        // console.log('this.state', this.state);
         return [
             {
                 tag: "div",

@@ -1,58 +1,68 @@
 import Component from "../../../framework/Component";
-import { WeatherForecastItem } from "../WeatherForecastItem/index";
+import {WeatherForecastItem} from "../WeatherForecastItem/index";
+import AppState from "../../../../services/AppState";
+
+const WEATHER_FORECAST_TIME = '12:00:00';
 
 export default class WeatherForecast extends Component {
-  constructor(host, props) {
-    super(host, props);
-  }
+    constructor(host, props) {
+        super(host, props);
+        AppState.watch('weatherForecast', this.updateMyself)
+    }
 
-  render() {
-    return [
-      {
-        tag: WeatherForecastItem,
-        props: {
-          day: "Thursday",
-          date: "01/03/2019",
-          temp: "5",
-          unit: "°",
-          wind: "0",
-          tempFeelsLike: "6",
-          description: "Overcast clouds"
-        },
-        classList: ["weather__days-3__day"]
-      },
-      {
-        tag: "hr"
-      },
-      {
-        tag: WeatherForecastItem,
-        props: {
-          day: "Wednesday",
-          date: "02/03/2019",
-          temp: "8",
-          unit: "°",
-          wind: "3",
-          tempFeelsLike: "10",
-          description: "Overcast clouds"
-        },
-        classList: ["weather__days-3__day"]
-      },
-      {
-        tag: "hr"
-      },
-      {
-        tag: WeatherForecastItem,
-        props: {
-          day: "Friday",
-          date: "03/03/2019",
-          temp: "15",
-          unit: "°",
-          wind: "0",
-          tempFeelsLike: "16",
-          description: "Overcast clouds"
-        },
-        classList: ["weather__days-3__day"]
-      }
-    ];
-  }
+    init() {
+        ['updateMyself', 'convertObjectToArrayForRender']
+            .forEach(methodName => this[methodName] = this[methodName].bind(this));
+        this.state = this.props;
+    }
+
+    updateMyself(state) {
+        const newState = state.list
+            .filter(weatherForecast =>
+                weatherForecast.dt_txt.includes(WEATHER_FORECAST_TIME))
+            .filter((weatherForecast, i) => 0 < i && i < 4)
+            .map(weatherData => {
+                const weatherDataState = {
+                    'main': weatherData.weather[0].main,
+                    'date': weatherData.dt_txt.substr(0, 10),
+                    'icon': weatherData.weather[0].icon,
+                    'temp': Math.round(weatherData.main.temp),
+                    'wind': weatherData.wind.speed,
+                    'description': weatherData.weather[0].description.toUpperCase(),
+                };
+                return weatherDataState;
+
+            });
+        this.updateState(newState);
+    }
+
+    convertObjectToArrayForRender(obj) {
+        const render = [];
+        Object.entries(obj).forEach(weatherForecast => {
+            const {main, date, icon, temp, wind, description} = weatherForecast[1];
+            render.push({
+                    tag: WeatherForecastItem,
+                    props: {
+                        main: main,
+                        date: date,
+                        icon: icon,
+                        temp: temp,
+                        wind: wind,
+                        description: description
+                    },
+                    classList: ["weather__days-3__day"]
+                },
+                {
+                    tag: "hr"
+                },
+            );
+
+        });
+
+        return render;
+    }
+
+    render() {
+        return this.convertObjectToArrayForRender(this.state);
+    }
 }

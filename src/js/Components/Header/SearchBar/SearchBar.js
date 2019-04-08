@@ -17,7 +17,7 @@ export default class SearchBar extends Component {
 
         WeatherDataService.getCurrentWeather(input.value)
             .then(currentWeather => {
-                console.log(currentWeather)
+                // console.log(currentWeather)
                 WeatherDataService.getWeatherForecast(input.value)
                     .then(weatherForecast => {
                         // console.log(weatherForecast);

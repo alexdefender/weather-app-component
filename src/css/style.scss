@@ -100,7 +100,7 @@ main {
 .weather__days-3 {
   display: none;
   padding: 10px;
-  height: 530px;
+  height: 500px;
   background: #fff;
 }
 
@@ -169,6 +169,8 @@ main {
 
 .weather__days-3__description {
   font-size: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 @import '_more-info';
