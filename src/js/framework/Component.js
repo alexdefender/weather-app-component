@@ -1,5 +1,3 @@
-import WeatherDataService from "../../services/WeatherDataService";
-
 export default class Component {
     constructor(host, props = {}) {
         this.host = host;
@@ -18,7 +16,7 @@ export default class Component {
     }
 
     _render() {
-        this.host.innerHTML = "";
+        this.host.innerHTML = '';
         const content = this.render();
 
         if (!Array.isArray(content)) {

@@ -23,18 +23,9 @@ export default class SearchBar extends Component {
                         // console.log(weatherForecast);
                         AppState.update('currentWeather', currentWeather);
                         AppState.update('weatherForecast', weatherForecast);
+                        AppState.update('history', input.value);
                     })
             });
-
-        /*WeatherDataService.getCurrentWeather(input.value)
-            .then(weather => {
-                console.log('weather', weather);
-                currentWeather = Object.create(weather) ;
-            });
-
-        console.log(currentWeather);*/
-
-        // return input.value;
     }
 
     render() {

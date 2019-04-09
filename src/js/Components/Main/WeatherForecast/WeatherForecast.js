@@ -51,10 +51,7 @@ export default class WeatherForecast extends Component {
                         description: description
                     },
                     classList: ["weather__days-3__day"]
-                },
-                {
-                    tag: "hr"
-                },
+                }
             );
 
         });
