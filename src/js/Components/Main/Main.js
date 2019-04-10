@@ -20,6 +20,7 @@ export default class Main extends Component {
     }
 
     addCityFromHistoryToState(city) {
+        console.log(city)
         this.state = {
             history: city.name
         };

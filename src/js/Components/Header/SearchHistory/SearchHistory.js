@@ -1,7 +1,7 @@
-import {SearchBar} from "../SearchBar/index";
 import AppState from "../../../../services/AppState";
+import Component from "../../../framework/Component";
 
-export default class SearchHistory extends SearchBar {
+export default class SearchHistory extends Component {
     constructor(host, props) {
         super(host, props);
         AppState.watch('history', this.updateMySelf);
@@ -19,7 +19,7 @@ export default class SearchHistory extends SearchBar {
     }
 
     removeCityByClickBtn(e) {
-        this.historyState = this.historyState.filter(city => city !== e.target.id);
+        this.historyState = this.historyState.filter(city => city !== e.target.id.substr(0, e.target.id.length-2));
         this.updateState(this.historyState);
     }
 
@@ -38,7 +38,7 @@ export default class SearchHistory extends SearchBar {
                             attributes: [
                                 {
                                     name: "id",
-                                    value: city
+                                    value: `${city}-h`
                                 },
                             ],
                             classList: ["fa", "fa-times"]

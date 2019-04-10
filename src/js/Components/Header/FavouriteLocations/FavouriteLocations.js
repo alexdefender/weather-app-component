@@ -1,6 +1,5 @@
 import Component from "../../../framework/Component";
 import AppState from "../../../../services/AppState";
-import {WeatherForecastItem} from "../../Main/WeatherForecastItem";
 
 export default class FavouriteLocations extends Component {
     constructor(host, props) {
@@ -9,18 +8,21 @@ export default class FavouriteLocations extends Component {
     }
 
     init() {
-        ["updateMyself", "addCityByClickBtn"]
+        ["updateMyself", "removeCityByClickBtn"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.favouriteState = [];
     }
 
     updateMyself(state) {
-        if (!this.favouriteState.includes(state)) this.favouriteState.push(state);
+        if (!this.favouriteState.includes(state)) {
+            this.favouriteState.push(state);
+        }
         this.updateState(this.favouriteState);
     }
 
-    addCityByClickBtn(e) {
-        console.log(e)
+    removeCityByClickBtn(e) {
+        this.favouriteState = this.favouriteState.filter(city => city !== e.target.id.substr(0, e.target.id.length-2));
+        this.updateState(this.favouriteState);
     }
 
     render() {
@@ -33,8 +35,14 @@ export default class FavouriteLocations extends Component {
                         {
                             tag: "button",
                             eventHandlers: {
-                                click: this.addCityByClickBtn
+                                click: this.removeCityByClickBtn
                             },
+                            attributes: [
+                                {
+                                    name: "id",
+                                    value: `${city}-f`
+                                },
+                            ],
                             classList: ["fa", "fa-times"]
                         }
                     ]
