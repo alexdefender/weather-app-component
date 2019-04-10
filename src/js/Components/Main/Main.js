@@ -1,10 +1,34 @@
 import Component from "../../framework/Component";
 import {CurrentWeather} from "./CurrentWeather/";
 import {WeatherForecast} from "./WeatherForecast/";
+import AppState from "../../../services/AppState";
 
 export default class Main extends Component {
     constructor(host, props) {
         super(host, props);
+        AppState.watch("currentWeather", this.addCityFromHistoryToState)
+    }
+
+    init() {
+        ["addCityFromHistoryToState", "addCityToFavouriteByClickBtn", "updateMyself"]
+            .forEach(methodName => this[methodName] = this[methodName].bind(this));
+        this.state = this.props;
+    }
+
+    updateMyself(state) {
+        // console.log(state.name);
+    }
+
+    addCityFromHistoryToState(city) {
+        this.state = {
+            history: city.name
+        };
+    }
+
+
+    addCityToFavouriteByClickBtn(e) {
+        AppState.update('favourite', this.state.history);
+        // console.log(this.state.history);
     }
 
     render() {
@@ -76,6 +100,9 @@ export default class Main extends Component {
             },
             {
                 tag: "button",
+                eventHandlers: {
+                    click: this.addCityToFavouriteByClickBtn
+                },
                 classList: ["fa", "fa-star"],
                 attributes: [
                     {
