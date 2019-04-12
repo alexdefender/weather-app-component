@@ -6,11 +6,12 @@ import AppState from "../../../services/AppState";
 export default class Main extends Component {
     constructor(host, props) {
         super(host, props);
-        AppState.watch("currentWeather", this.addCityFromHistoryToState)
+        AppState.watch("history", this.addCityFromHistoryToState);
+        AppState.watch("delete", this.checkClassListBtn);
     }
 
     init() {
-        ["addCityFromHistoryToState", "addCityToFavouriteByClickBtn", "updateMyself"]
+        ["addCityFromHistoryToState", "addCityToFavouriteByClickBtn", "updateMyself", "checkClassListBtn"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = this.props;
     }
@@ -20,16 +21,36 @@ export default class Main extends Component {
     }
 
     addCityFromHistoryToState(city) {
-        console.log(city)
-        this.state = {
-            history: city.name
-        };
+        // Object.assign(this.state, {favourite: city})
+        // console.log(city);
+        this.state = city;
+        // console.log(this.state)
     }
 
+    addCityToFavouriteByClickBtn() {
+        AppState.update('favourite', this.state);
+    }
 
-    addCityToFavouriteByClickBtn(e) {
-        AppState.update('favourite', this.state.history);
-        // console.log(this.state.history);
+    checkClassListBtn(e) {
+        // console.log(e);
+        // console.log(this.state);
+        if (e !== undefined && e.includes(this.state)) {
+            // console.log(111);
+            return ["fa", "fa-star", "fa-star-fav"];
+        } else {
+            // console.log(222);
+            return ["fa", "fa-star"];
+        }
+    }
+
+    changeToCelsius() {
+        AppState.update("unit", "&units=metric");
+
+    }
+
+    changeToFahrenheit() {
+        AppState.update("unit", "&units=imperial");
+
     }
 
     render() {
@@ -104,7 +125,7 @@ export default class Main extends Component {
                 eventHandlers: {
                     click: this.addCityToFavouriteByClickBtn
                 },
-                classList: ["fa", "fa-star"],
+                classList: this.checkClassListBtn(),
                 attributes: [
                     {
                         name: "aria-hidden",
@@ -115,27 +136,21 @@ export default class Main extends Component {
             {
                 tag: "button",
                 classList: "temp-change-btn",
-                content: "C&deg;"
+                content: "C&deg;",
+                eventHandlers: {
+                    click: this.changeToCelsius
+                },
             },
             {
                 tag: "button",
                 classList: "temp-change-btn",
                 content: "F",
+                eventHandlers: {
+                    click: this.changeToFahrenheit
+                },
             },
             {
                 tag: CurrentWeather,
-                /*props: {
-                    city: "London",
-                    country: "GB",
-                    date: "2019-03-09",
-                    temp: 7,
-                    unit: "°",
-                    wind: "0",
-                    tempFeelsLike: "10",
-                    description: "Cloud",
-                    humidity: "90",
-                    pressure: "1010.39"
-                },*/
                 classList: "weather__today",
                 attributes: [
                     {

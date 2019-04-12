@@ -6,12 +6,9 @@ import {Main} from "../Main";
 export default class App extends Component {
     constructor(host) {
         super(host);
-        this.state = {};
     }
 
     render() {
-        if (this.state !== undefined) console.log(1);
-
         return [
             {
                 tag: SearchBar,
@@ -19,7 +16,6 @@ export default class App extends Component {
             },
             {
                 tag: Main,
-                // props: this.state.name,
                 classList: "weather-wrapper",
 
             },

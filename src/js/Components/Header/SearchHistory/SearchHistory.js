@@ -14,6 +14,7 @@ export default class SearchHistory extends Component {
     }
 
     updateMySelf(state) {
+        // console.log(state)
         if (!this.historyState.includes(state)) this.historyState.push(state);
         this.updateState(this.historyState);
     }

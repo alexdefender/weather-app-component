@@ -6,7 +6,7 @@ main {
   width: 400px;
   margin: 0 auto;
   background-color: #77a8e0;
-  box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
+  box-shadow: 0px 0px 5px 3px rgba(217, 217, 217, 1);
 }
 
 .search-wrapper {
@@ -104,7 +104,7 @@ main {
 .weather__days-3 {
   display: none;
   padding: 10px;
-  height: 500px;
+  height: 480px;
   background: #fff;
 }
 
@@ -134,7 +134,7 @@ main {
   height: 20%;
 }
 
-.weather__today__description, 
+.weather__today__description,
 .days-3__description {
   font-size: 30px;
   font-weight: 600;

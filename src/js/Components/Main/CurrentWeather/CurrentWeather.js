@@ -14,6 +14,7 @@ export default class CurrentWeather extends Component {
     }
 
     updateMyself(state) {
+        // console.log(state)
         let currentDate = new Date().toISOString().substr(0,10);
         const newState = {
             'city': state.name,
@@ -35,8 +36,7 @@ export default class CurrentWeather extends Component {
     render() {
         const {city, country, date, temp, wind, description, icon, clouds, humidity, pressure} = this.state;
 
-        // console.log('this.state', this.state);
-        return [
+        return (Object.entries(this.state).length !== 0) ? [
             {
                 tag: "div",
                 children: [
@@ -142,6 +142,6 @@ export default class CurrentWeather extends Component {
                     }
                 ]
             }
-        ];
+        ] : [];
     }
 }

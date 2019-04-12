@@ -14,10 +14,17 @@ export default class FavouriteLocations extends Component {
     }
 
     updateMyself(state) {
+        // console.log(state)
         if (!this.favouriteState.includes(state)) {
             this.favouriteState.push(state);
+        } else {
+            this.favouriteState = this.favouriteState.filter(city => city !== state)
         }
+
         this.updateState(this.favouriteState);
+        // console.log("this.favouriteState", this.favouriteState);
+        AppState.update('delete', this.favouriteState);
+
     }
 
     removeCityByClickBtn(e) {
@@ -26,6 +33,7 @@ export default class FavouriteLocations extends Component {
     }
 
     render() {
+        // console.log(this.favouriteState);
         return this.favouriteState !== undefined ?
             this.favouriteState.map(city => {
                 return {

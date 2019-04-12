@@ -2,9 +2,12 @@ import Component from "../../../framework/Component";
 import WeatherDataService from "../../../../services/WeatherDataService";
 import AppState from "../../../../services/AppState";
 
+// let TEMP_UNIT = "&units=metric";
+
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
+        AppState.watch("unit", this.getInfoFromInput)
     }
 
     init() {
@@ -12,13 +15,16 @@ export default class SearchBar extends Component {
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
     }
 
-    getInfoFromInput() {
+    getInfoFromInput(unit) {
         let input = document.getElementById('search');
-
-        WeatherDataService.getCurrentWeather(input.value)
+        console.log(input.value);
+        if (unit.type === 'click') {
+            unit = "&units=metric";
+        }
+        WeatherDataService.getCurrentWeather(input.value, unit)
             .then(currentWeather => {
                 // console.log(currentWeather)
-                WeatherDataService.getWeatherForecast(input.value)
+                WeatherDataService.getWeatherForecast(input.value, unit)
                     .then(weatherForecast => {
                         // console.log(weatherForecast);
                         AppState.update('currentWeather', currentWeather);
