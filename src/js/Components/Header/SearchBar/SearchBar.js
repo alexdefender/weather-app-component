@@ -7,30 +7,27 @@ import AppState from "../../../../services/AppState";
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
-        AppState.watch("unit", this.getInfoFromInput)
+        AppState.watch("init", this.getInfoFromInput);
     }
 
     init() {
-        ['getInfoFromInput']
+        ["getInfoFromInput"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
     }
 
-    getInfoFromInput(unit) {
-        let input = document.getElementById('search');
-        console.log(input.value);
-        if (unit.type === 'click') {
-            unit = "&units=metric";
-        }
-        WeatherDataService.getCurrentWeather(input.value, unit)
+    getInfoFromInput() {
+        let input = document.getElementById("search");
+        // console.log(input.value);
+        WeatherDataService.getCurrentWeather(input.value)
             .then(currentWeather => {
                 // console.log(currentWeather)
-                WeatherDataService.getWeatherForecast(input.value, unit)
+                WeatherDataService.getWeatherForecast(input.value)
                     .then(weatherForecast => {
                         // console.log(weatherForecast);
-                        AppState.update('currentWeather', currentWeather);
-                        AppState.update('weatherForecast', weatherForecast);
-                        AppState.update('history', input.value);
-                    })
+                        AppState.update("currentWeather", currentWeather);
+                        AppState.update("weatherForecast", weatherForecast);
+                        AppState.update("history", input.value);
+                    });
             });
     }
 
@@ -54,7 +51,7 @@ export default class SearchBar extends Component {
                     },
                     {
                         name: "value",
-                        value: "Kiev"
+                        value: "Kiev, UA"
                     }
                 ]
             },
@@ -62,6 +59,7 @@ export default class SearchBar extends Component {
                 tag: "button",
                 eventHandlers: {
                     click: this.getInfoFromInput,
+
                 },
                 classList: ["search__btn"],
                 attributes: [

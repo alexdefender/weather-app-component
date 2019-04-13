@@ -16,7 +16,7 @@ export default class Component {
     }
 
     _render() {
-        this.host.innerHTML = '';
+        this.host.innerHTML = "";
         const content = this.render();
 
         if (!Array.isArray(content)) {
@@ -91,7 +91,7 @@ export default class Component {
         }
 
         if (element.eventHandlers) {
-            // console.log(element.eventHandlers);
+            // console.log(element);
             Object.keys(element.eventHandlers).forEach(eventType => {
                 container.addEventListener(eventType, element.eventHandlers[eventType]);
             });

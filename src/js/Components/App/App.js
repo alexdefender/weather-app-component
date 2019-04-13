@@ -21,7 +21,7 @@ export default class App extends Component {
             },
             {
                 tag: LocationsList,
-                classList: 'favor-hist__wrapper',
+                classList: "favor-hist__wrapper",
             }
         ];
     }

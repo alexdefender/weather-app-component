@@ -57,6 +57,8 @@ main {
   border: 0;
   cursor: pointer;
   color: #1a1a1a;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .weather-wrapper {
@@ -116,6 +118,7 @@ main {
 .weather__today__main-values {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   li {
     list-style-type: none;
@@ -124,9 +127,10 @@ main {
 }
 
 .weather__today__temp {
-  font-size: 70px;
+  font-size: 50px;
   padding-left: 10px;
   margin: 0;
+  width: 40%;
 }
 
 .weather__today__img {

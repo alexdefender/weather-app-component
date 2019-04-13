@@ -2,33 +2,27 @@ import Component from "../../framework/Component";
 import {CurrentWeather} from "./CurrentWeather/";
 import {WeatherForecast} from "./WeatherForecast/";
 import AppState from "../../../services/AppState";
+import {SearchBar} from "../Header/SearchBar";
 
 export default class Main extends Component {
     constructor(host, props) {
         super(host, props);
         AppState.watch("history", this.addCityFromHistoryToState);
-        AppState.watch("delete", this.checkClassListBtn);
+        AppState.watch("deleteFromFavourite", this.checkClassListBtn);
     }
 
     init() {
-        ["addCityFromHistoryToState", "addCityToFavouriteByClickBtn", "updateMyself", "checkClassListBtn"]
+        ["addCityFromHistoryToState", "addCityToFavouriteByClickBtn", "checkClassListBtn", "changeTemp"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = this.props;
     }
 
-    updateMyself(state) {
-        // console.log(state.name);
-    }
-
     addCityFromHistoryToState(city) {
-        // Object.assign(this.state, {favourite: city})
-        // console.log(city);
         this.state = city;
-        // console.log(this.state)
     }
 
     addCityToFavouriteByClickBtn() {
-        AppState.update('favourite', this.state);
+        AppState.update("favourite", this.state);
     }
 
     checkClassListBtn(e) {
@@ -43,14 +37,12 @@ export default class Main extends Component {
         }
     }
 
-    changeToCelsius() {
-        AppState.update("unit", "&units=metric");
+    changeTemp(e) {
+        console.log(e.target.innerText);
+        e.target.innerText === "F" ? AppState.update("unit", "&units=imperial")
+            : AppState.update("unit", "&units=metric");
 
-    }
-
-    changeToFahrenheit() {
-        AppState.update("unit", "&units=imperial");
-
+        AppState.update("init", e);
     }
 
     render() {
@@ -136,9 +128,9 @@ export default class Main extends Component {
             {
                 tag: "button",
                 classList: "temp-change-btn",
-                content: "C&deg;",
+                content: "C",
                 eventHandlers: {
-                    click: this.changeToCelsius
+                    click: this.changeTemp
                 },
             },
             {
@@ -146,7 +138,7 @@ export default class Main extends Component {
                 classList: "temp-change-btn",
                 content: "F",
                 eventHandlers: {
-                    click: this.changeToFahrenheit
+                    click: this.changeTemp
                 },
             },
             {

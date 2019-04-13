@@ -4,11 +4,11 @@ import Component from "../../../framework/Component";
 export default class SearchHistory extends Component {
     constructor(host, props) {
         super(host, props);
-        AppState.watch('history', this.updateMySelf);
+        AppState.watch("history", this.updateMySelf);
     }
 
     init() {
-        ['updateMySelf', 'removeCityByClickBtn']
+        ["updateMySelf", "removeCityByClickBtn"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.historyState = [];
     }
@@ -20,7 +20,7 @@ export default class SearchHistory extends Component {
     }
 
     removeCityByClickBtn(e) {
-        this.historyState = this.historyState.filter(city => city !== e.target.id.substr(0, e.target.id.length-2));
+        this.historyState = this.historyState.filter(city => city !== e.target.id.substr(0, e.target.id.length - 2));
         this.updateState(this.historyState);
     }
 
@@ -45,7 +45,7 @@ export default class SearchHistory extends Component {
                             classList: ["fa", "fa-times"]
                         }
                     ]
-                }
+                };
             })
             : [];
     }

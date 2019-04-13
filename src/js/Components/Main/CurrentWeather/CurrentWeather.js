@@ -1,40 +1,53 @@
 import Component from "../../../framework/Component";
 import AppState from "../../../../services/AppState";
 
+let unitTemp = "&units=metric";
+
 export default class CurrentWeather extends Component {
     constructor(host, props) {
         super(host, props);
-        AppState.watch('currentWeather', this.updateMyself)
+        AppState.watch("currentWeather", this.updateMyself);
+        AppState.watch("unit", this.changeUnit);
     }
 
     init() {
-        ['updateMyself']
+        ["updateMyself", "changeUnit"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = this.props;
     }
 
+    changeUnit(unit) {
+        unitTemp = unit;
+    }
+
     updateMyself(state) {
-        // console.log(state)
-        let currentDate = new Date().toISOString().substr(0,10);
-        const newState = {
-            'city': state.name,
-            'country': state.sys.country,
-            'date': currentDate,
-            'temp': Math.round(state.main.temp),
-            'wind': state.wind.speed,
-            'description': state.weather[0].description.toUpperCase(),
-            'icon': state.weather[0].icon,
-            'clouds': state.clouds.all,
-            'humidity': state.main.humidity,
-            'pressure': state.main.pressure,
+        let currentDate = new Date().toISOString().substr(0, 10);
+        let unit = "C";
+
+        if (unitTemp !== "&units=metric") {
+            unit = "F";
+        }
+
+        this.state = {
+            "city": state.name,
+            "country": state.sys.country,
+            "date": currentDate,
+            "temp": Math.round(state.main.temp),
+            "unit": unit,
+            "wind": Math.round(state.wind.speed),
+            "description": state.weather[0].description.toUpperCase(),
+            "icon": state.weather[0].icon,
+            "clouds": state.clouds.all,
+            "humidity": state.main.humidity,
+            "pressure": state.main.pressure,
         };
 
         // console.log(state)
-        this.updateState(newState);
+        this.updateState(this.state);
     }
 
     render() {
-        const {city, country, date, temp, wind, description, icon, clouds, humidity, pressure} = this.state;
+        const {city, country, date, temp, unit, wind, description, icon, clouds, humidity, pressure} = this.state;
 
         return (Object.entries(this.state).length !== 0) ? [
             {
@@ -55,7 +68,7 @@ export default class CurrentWeather extends Component {
                             {
                                 tag: "p",
                                 classList: "weather__today__temp",
-                                content: temp
+                                content: `${temp}&deg; ${unit}`
                             },
                             {
                                 tag: "ul",

@@ -6,7 +6,7 @@ export default class WeatherForecastItem extends Component {
     }
 
     render() {
-        const {main, date, icon, temp, wind, description} = this.props;
+        const {main, date, icon, temp, unit, wind, description} = this.props;
         return [
             {
                 tag: "div",
@@ -36,7 +36,7 @@ export default class WeatherForecastItem extends Component {
                 children: [
                     {
                         tag: "li",
-                        content: `${temp}`
+                        content: `${temp}&deg; ${unit}`
                     },
                     {
                         tag: "li",

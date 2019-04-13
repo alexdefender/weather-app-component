@@ -1,29 +1,37 @@
-const API_KEY = '&APPID=9e5f732b51c403196a6a5096551e6098';
-const API_DATA_WEATHER = 'http://api.openweathermap.org/data/2.5/weather?q=';
-const API_DATA_FORECAST = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+import AppState from "./AppState";
 
+const API_KEY = "&APPID=9e5f732b51c403196a6a5096551e6098";
+const API_DATA_WEATHER = "http://api.openweathermap.org/data/2.5/weather?q=";
+const API_DATA_FORECAST = "http://api.openweathermap.org/data/2.5/forecast?q=";
+let API_TEMP_UNIT = "&units=metric";
 
 class WeatherDataService {
     constructor() {
+        AppState.watch("unit", this.changeUnit);
     }
 
-    getCurrentWeather(city, unit) {
-        return fetch(API_DATA_WEATHER + city + unit + API_KEY)
+    changeUnit(state) {
+        // console.log(state)
+        API_TEMP_UNIT = state;
+    }
+
+    getCurrentWeather(city) {
+        return fetch(API_DATA_WEATHER + city + API_TEMP_UNIT + API_KEY)
             .then(response => {
-                return response.json()
+                return response.json();
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             });
     }
 
-    getWeatherForecast(city, unit) {
-        return fetch(API_DATA_FORECAST + city + unit + API_KEY)
+    getWeatherForecast(city) {
+        return fetch(API_DATA_FORECAST + city + API_TEMP_UNIT + API_KEY)
             .then(response => {
-                return response.json()
+                return response.json();
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             });
     }
 }
