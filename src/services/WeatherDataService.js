@@ -11,7 +11,6 @@ class WeatherDataService {
     }
 
     changeUnit(state) {
-        // console.log(state)
         API_TEMP_UNIT = state;
     }
 

@@ -15,18 +15,25 @@ export default class SearchBar extends Component {
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
     }
 
-    getInfoFromInput() {
-        let input = document.getElementById("search");
-        // console.log(input.value);
-        WeatherDataService.getCurrentWeather(input.value)
+    getInfoFromInput(e) {
+        let input;
+        if (e.target !== undefined) {
+            input = document.getElementById("search").value;
+        } else {
+            input = e;
+            document.getElementById("search").value = e;
+        }
+        WeatherDataService.getCurrentWeather(input)
             .then(currentWeather => {
-                // console.log(currentWeather)
-                WeatherDataService.getWeatherForecast(input.value)
+                WeatherDataService.getWeatherForecast(input)
                     .then(weatherForecast => {
-                        // console.log(weatherForecast);
+                        if (currentWeather.message === "city not found") {
+                            alert("No found city, please correct name!");
+                            return;
+                        }
                         AppState.update("currentWeather", currentWeather);
                         AppState.update("weatherForecast", weatherForecast);
-                        AppState.update("history", input.value);
+                        AppState.update("history", input);
                     });
             });
     }
@@ -52,14 +59,15 @@ export default class SearchBar extends Component {
                     {
                         name: "value",
                         value: "Kiev, UA"
-                    }
+                    },
+
+
                 ]
             },
             {
                 tag: "button",
                 eventHandlers: {
                     click: this.getInfoFromInput,
-
                 },
                 classList: ["search__btn"],
                 attributes: [

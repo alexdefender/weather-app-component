@@ -1,13 +1,13 @@
 .favor-hist__wrapper {
-    position: relative;
-    background-color: #ffffff;
+  position: relative;
+  background-color: #ffffff;
 }
 
 #favor-hist__checkbox {
   height: 0;
   width: 0;
   margin: -1px;
-  
+
   &:checked + .favor-hist {
     visibility: visible;
     animation-duration: 0.5s;
@@ -17,16 +17,20 @@
 }
 
 .favor-hist {
-    visibility: hidden;
-    position: absolute;
-    width: 400px;
-    height: 550px;
-    top: -545px;
-    padding: 10px; 
-    padding-top: 0;
-    background-color: #ffffff;
-    box-sizing: border-box;
+  visibility: hidden;
+  position: absolute;
+  width: 400px;
+  height: 550px;
+  top: -545px;
+  padding: 10px;
+  padding-top: 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+  div {
+    cursor: pointer;
   }
+}
 
 .favor-hist__icon {
   position: absolute;
@@ -39,3 +43,4 @@
   left: 20px;
   cursor: pointer;
 }
+

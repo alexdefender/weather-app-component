@@ -4768,7 +4768,7 @@ require-directory@^2.1.1:
 
 require-main-filename@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/require-Main-filename/-/require-Main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
+  resolved "https://registry.yarnpkg.com/require-NoFound-filename/-/require-NoFound-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
   integrity sha1-l/cXtp1IeE9fUmpsWqj/3aBVpNE=
 
 resolve-from@^3.0.0:
@@ -5850,7 +5850,7 @@ yargs@^7.0.0:
     os-locale "^1.4.0"
     read-pkg-up "^1.0.1"
     require-directory "^2.1.1"
-    require-Main-filename "^1.0.1"
+    require-NoFound-filename "^1.0.1"
     set-blocking "^2.0.0"
     string-width "^1.0.2"
     which-module "^1.0.0"

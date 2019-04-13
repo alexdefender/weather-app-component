@@ -68,7 +68,7 @@ export default class CurrentWeather extends Component {
                             {
                                 tag: "p",
                                 classList: "weather__today__temp",
-                                content: `${temp}&deg; ${unit}`
+                                content: `${temp}&deg;${unit}`
                             },
                             {
                                 tag: "ul",

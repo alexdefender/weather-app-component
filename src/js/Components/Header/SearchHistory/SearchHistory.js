@@ -8,7 +8,7 @@ export default class SearchHistory extends Component {
     }
 
     init() {
-        ["updateMySelf", "removeCityByClickBtn"]
+        ["updateMySelf", "removeCityByClickBtn", "searchCityFromFavourite"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.historyState = [];
     }
@@ -24,12 +24,19 @@ export default class SearchHistory extends Component {
         this.updateState(this.historyState);
     }
 
+    searchCityFromFavourite(e) {
+        AppState.update("init", e.target.innerText);
+    }
+
     render() {
         return this.historyState !== undefined ?
             this.historyState.map(city => {
                 return {
                     tag: "div",
                     content: city,
+                    eventHandlers: {
+                        click: this.searchCityFromFavourite
+                    },
                     children: [
                         {
                             tag: "button",

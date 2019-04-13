@@ -36,7 +36,7 @@ export default class WeatherForecastItem extends Component {
                 children: [
                     {
                         tag: "li",
-                        content: `${temp}&deg; ${unit}`
+                        content: `${temp}&deg;${unit}`
                     },
                     {
                         tag: "li",

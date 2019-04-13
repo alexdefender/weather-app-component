@@ -8,13 +8,12 @@ export default class FavouriteLocations extends Component {
     }
 
     init() {
-        ["updateMyself", "removeCityByClickBtn"]
+        ["updateMyself", "removeCityByClickBtn", "searchCityFromFavourite"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.favouriteState = [];
     }
 
     updateMyself(state) {
-        // console.log(state);
         if (!this.favouriteState.includes(state) && Object.entries(state).length !== 0) {
             this.favouriteState.push(state);
         } else {
@@ -30,13 +29,19 @@ export default class FavouriteLocations extends Component {
         this.updateState(this.favouriteState);
     }
 
+    searchCityFromFavourite(e) {
+        AppState.update("init", e.target.innerText);
+    }
+
     render() {
-        // console.log(this.favouriteState);
         return this.favouriteState !== undefined ?
             this.favouriteState.map(city => {
                 return {
                     tag: "div",
                     content: city,
+                    eventHandlers: {
+                        click: this.searchCityFromFavourite
+                    },
                     children: [
                         {
                             tag: "button",

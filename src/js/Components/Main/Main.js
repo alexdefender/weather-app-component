@@ -2,7 +2,6 @@ import Component from "../../framework/Component";
 import {CurrentWeather} from "./CurrentWeather/";
 import {WeatherForecast} from "./WeatherForecast/";
 import AppState from "../../../services/AppState";
-import {SearchBar} from "../Header/SearchBar";
 
 export default class Main extends Component {
     constructor(host, props) {
@@ -38,7 +37,6 @@ export default class Main extends Component {
     }
 
     changeTemp(e) {
-        console.log(e.target.innerText);
         e.target.innerText === "F" ? AppState.update("unit", "&units=imperial")
             : AppState.update("unit", "&units=metric");
 
