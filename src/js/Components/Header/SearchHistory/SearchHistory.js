@@ -15,32 +15,17 @@ export default class SearchHistory extends Component {
     }
 
     checkLocalStorage() {
-        if (this.historyState.length === 0) {
-            localStorage.removeItem("historyState");
-        } else {
-            localStorage["historyState"] = this.historyState.slice(0);
-        }
         if (this.historyState.length === 0 && localStorage["historyState"] !== undefined) {
             this.historyState = JSON.parse(localStorage["historyState"].slice(0));
         }
     }
 
     updateMySelf(state) {
-        // console.log(state)
-
-
-        // console.log(this.historyState);
-
         if (!this.historyState.includes(state)) {
             this.historyState.push(state);
         }
         localStorage["historyState"] = JSON.stringify(this.historyState);
         this.updateState(this.historyState);
-
-
-        let historyStorage = JSON.parse(localStorage["historyState"]);
-
-        // console.log(historyStorage);
     }
 
     removeCityByClickBtn(e) {
@@ -49,7 +34,11 @@ export default class SearchHistory extends Component {
     }
 
     searchCityFromSearchList(e) {
-        this.checkLocalStorage();
+        if (this.historyState.length === 0) {
+            localStorage.removeItem("historyState");
+        } else {
+            localStorage["historyState"] = this.historyState.slice(0);
+        }
         if (e.target.innerText === "") return;
         AppState.update("init", e.target.innerText);
     }

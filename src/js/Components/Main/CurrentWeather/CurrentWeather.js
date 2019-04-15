@@ -41,8 +41,6 @@ export default class CurrentWeather extends Component {
             "humidity": state.main.humidity,
             "pressure": state.main.pressure,
         };
-
-        // console.log(state)
         this.updateState(this.state);
     }
 

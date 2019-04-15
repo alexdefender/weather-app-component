@@ -91,7 +91,6 @@ export default class Component {
         }
 
         if (element.eventHandlers) {
-            // console.log(element);
             Object.keys(element.eventHandlers).forEach(eventType => {
                 container.addEventListener(eventType, element.eventHandlers[eventType]);
             });

@@ -14,7 +14,6 @@ export default class SearchBar extends Component {
     }
 
     getInfoFromInput(e) {
-        // console.log(e.target)
         let input;
         if (e.target !== undefined) {
             input = document.getElementById("search").value;
@@ -22,8 +21,6 @@ export default class SearchBar extends Component {
             input = e;
             document.getElementById("search").value = e;
         }
-
-        // console.log(input )
         WeatherDataService.getCurrentWeather(input)
             .then(currentWeather => {
                 WeatherDataService.getWeatherForecast(input)

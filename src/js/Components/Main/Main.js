@@ -25,8 +25,6 @@ export default class Main extends Component {
     }
 
     checkClassListBtn(e) {
-        // console.log(e);
-        // console.log(this.state);
         if (e !== undefined && e.includes(this.state)) {
             // console.log(111);
             return ["fa", "fa-star", "fa-star-fav"];
