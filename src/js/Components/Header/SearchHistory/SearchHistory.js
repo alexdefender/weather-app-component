@@ -8,15 +8,39 @@ export default class SearchHistory extends Component {
     }
 
     init() {
-        ["updateMySelf", "removeCityByClickBtn", "searchCityFromFavourite"]
+        ["updateMySelf", "removeCityByClickBtn", "searchCityFromSearchList", "checkLocalStorage"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.historyState = [];
+        this.checkLocalStorage();
+    }
+
+    checkLocalStorage() {
+        if (this.historyState.length === 0) {
+            localStorage.removeItem("historyState");
+        } else {
+            localStorage["historyState"] = this.historyState.slice(0);
+        }
+        if (this.historyState.length === 0 && localStorage["historyState"] !== undefined) {
+            this.historyState = JSON.parse(localStorage["historyState"].slice(0));
+        }
     }
 
     updateMySelf(state) {
         // console.log(state)
-        if (!this.historyState.includes(state)) this.historyState.push(state);
+
+
+        // console.log(this.historyState);
+
+        if (!this.historyState.includes(state)) {
+            this.historyState.push(state);
+        }
+        localStorage["historyState"] = JSON.stringify(this.historyState);
         this.updateState(this.historyState);
+
+
+        let historyStorage = JSON.parse(localStorage["historyState"]);
+
+        // console.log(historyStorage);
     }
 
     removeCityByClickBtn(e) {
@@ -24,19 +48,23 @@ export default class SearchHistory extends Component {
         this.updateState(this.historyState);
     }
 
-    searchCityFromFavourite(e) {
+    searchCityFromSearchList(e) {
+        this.checkLocalStorage();
+        if (e.target.innerText === "") return;
         AppState.update("init", e.target.innerText);
     }
 
     render() {
         return this.historyState !== undefined ?
             this.historyState.map(city => {
+
                 return {
                     tag: "div",
                     content: city,
                     eventHandlers: {
-                        click: this.searchCityFromFavourite
+                        click: this.searchCityFromSearchList
                     },
+
                     children: [
                         {
                             tag: "button",

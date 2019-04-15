@@ -8,20 +8,42 @@ export default class FavouriteLocations extends Component {
     }
 
     init() {
-        ["updateMyself", "removeCityByClickBtn", "searchCityFromFavourite"]
+        ["updateMyself", "removeCityByClickBtn", "searchCityFromFavourite", "checkLocalStorage"]
             .forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.favouriteState = [];
+        this.checkLocalStorage();
+    }
+
+    checkLocalStorage() {
+        console.log(this.favouriteState)
+
+        if (this.favouriteState.length === 0) {
+            localStorage.removeItem("favouriteState");
+        } else {
+            localStorage["favouriteState"] = this.favouriteState.slice(0);
+        }
+
+        if (this.favouriteState.length === 0 && localStorage["favouriteState"] !== undefined) {
+            this.favouriteState = JSON.parse(localStorage["favouriteState"].slice(0));
+        }
+
     }
 
     updateMyself(state) {
+
+        // console.log(this.favouriteState);
+
         if (!this.favouriteState.includes(state) && Object.entries(state).length !== 0) {
             this.favouriteState.push(state);
         } else {
             this.favouriteState = this.favouriteState.filter(city => city !== state);
         }
+        localStorage["favouriteState"] = JSON.stringify(this.favouriteState);
+        // console.log(this.favouriteState);
 
         this.updateState(this.favouriteState);
-        AppState.update("deleteFromFavourite", this.favouriteState);
+
+        // AppState.update("deleteFromFavourite", this.favouriteState);
     }
 
     removeCityByClickBtn(e) {
@@ -30,6 +52,9 @@ export default class FavouriteLocations extends Component {
     }
 
     searchCityFromFavourite(e) {
+        this.checkLocalStorage();
+
+        if (e.target.innerText === "") return;
         AppState.update("init", e.target.innerText);
     }
 
