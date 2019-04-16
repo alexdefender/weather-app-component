@@ -4,6 +4,7 @@
   "main": "./index.html",
   "author": "alex",
   "license": "MIT",
+  "repository": "https://github.com/alexdefender/weather-app-component",
   "devDependencies": {
     "autoprefixer": "^9.4.9",
     "node-sass": "^4.11.0",
